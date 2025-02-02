@@ -1,27 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   puch_swap.c                                        :+:      :+:    :+:   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:02:45 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/01 21:21:32 by salhali          ###   ########.fr       */
+/*   Updated: 2025/02/02 13:51:43 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "push_swap.h"
 
-// #include "../libft/libft.a"
+// # define INT_MIN    (-INT_MAX - 1)
+// # define INT_MAX    2147483647
+// // #include "../libft/libft.a"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 #include <limits.h>
 
-// # define INT_MIN    (-INT_MAX - 1)
-// # define INT_MAX    2147483647
-
-// Function to check if character is digit
 typedef struct s_node
 {
     long data;
@@ -35,7 +33,6 @@ int ft_isdigit(int arg)
     else
         return (0);
 }
-// Check if string is a valid number
 int is_valid_number(char *str)
 {
     int i;
@@ -57,10 +54,9 @@ int is_valid_number(char *str)
         return(0);
     return (1);
 }
-// Function to create a new node in the stack
-t_node *new_node(long data) //// Kat créer node jdida
+t_node *new_node(long data) 
 {
-    t_node *node = (t_node *)malloc(sizeof(t_node));
+    t_node *node = malloc(sizeof(t_node));
     if (!node)
         return NULL;
     node->data = data;
@@ -72,7 +68,7 @@ t_node *get_last_node(t_node **stack)
 {
     t_node *tmp;
 
-    if (stack)
+    if (!stack)
         return NULL;
     tmp = *stack;
     while (tmp->next)
@@ -82,13 +78,15 @@ t_node *get_last_node(t_node **stack)
     return(tmp);
 }
 // Push function to add element to the stack
-void push(t_node **stack, long data) //Katzid node jdida f stack:
+void push(t_node **stack, long data)
 {
-    t_node *node = new_node(data); 
-    t_node *tmp;
-    tmp = get_last_node(stack);
-    if (tmp)
-        tmp->next = node;
+    t_node *node;
+    // t_node *tmp;
+
+    node = new_node(data); 
+    // tmp = get_last_node(stack);
+    if (!node)
+    node->next = *stack;
     *stack = node;
 }
 
@@ -113,15 +111,16 @@ int	main(int argc, char **argv)
     long    num;
     int i;
 
+    i = 1;
     stackB = NULL; // Initialize stack B as empty Hitach stack B haso ikon khawi
     if(argc > 1)
     {
-        check = is_valid_number(argv[1]); // Correction ici, 3adi ndir argv[1]
-        while(check)
+        while (i < argc) // Bach ndiro loop li ghatraverse argv[i] li kaynin
         {
+            check = is_valid_number(argv[i]); // Correction ici, 3adi ndir argv[1]
             if (check)
             {
-                num = atol(argv[1]);
+                num = atol(argv[i]);
                 push(&stackB, num);
                 write(1, "stackB siftna lih Data\n", 24);
             }
@@ -130,11 +129,13 @@ int	main(int argc, char **argv)
                     write(1, "Invalid number\n", 15);
             }
             print_stack(&stackB);
-            return (0);
+            i++;
         }
     }
     else
+    {
         write(1, "Kol m3ahom ou 7di mnhom\n", 25);
         write(1, "T3am kayn ou lghdar kayn\n", 26);
+    }
     return(0);
 }
