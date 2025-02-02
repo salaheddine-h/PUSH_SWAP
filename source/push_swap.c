@@ -6,34 +6,13 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:02:45 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/02 13:51:43 by salhali          ###   ########.fr       */
+/*   Updated: 2025/02/02 16:44:29 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "push_swap.h"
+#include "push_swap.h"
 
-// # define INT_MIN    (-INT_MAX - 1)
-// # define INT_MAX    2147483647
-// // #include "../libft/libft.a"
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <limits.h>
-
-typedef struct s_node
-{
-    long data;
-    struct s_node *next;
-} t_node;
-
-int ft_isdigit(int arg)
-{
-    if (arg >= '0' && arg <= '9')
-        return (1);
-    else
-        return (0);
-}
-int is_valid_number(char *str)
+int is_valid_number(char *str, t_node *stack)
 {
     int i;
     long num;
@@ -52,7 +31,14 @@ int is_valid_number(char *str)
     num = atol(str);
     if(num < INT_MIN || num > INT_MAX) //check is number kbiir mn range (int)
         return(0);
-    return (1);
+    //Check duplicate
+    while (stack)
+    {
+        if (stack->data == num) // L9ina duplicate
+            return (0);
+        stack = stack->next;
+    }
+    return(1);
 }
 t_node *new_node(long data) 
 {
@@ -103,39 +89,32 @@ void print_stack(t_node **stack)
         tmp = tmp->next;
     }
 }
-
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-    t_node *stackB;
-    int     check;
-    long    num;
+    t_node *stackA;
+    int num;
     int i;
-
+    
     i = 1;
-    stackB = NULL; // Initialize stack B as empty Hitach stack B haso ikon khawi
-    if(argc > 1)
+    stackA = NULL;
+    if (argc > 1)
     {
         while (i < argc) // Bach ndiro loop li ghatraverse argv[i] li kaynin
         {
-            check = is_valid_number(argv[i]); // Correction ici, 3adi ndir argv[1]
-            if (check)
-            {
-                num = atol(argv[i]);
-                push(&stackB, num);
-                write(1, "stackB siftna lih Data\n", 24);
-            }
-            else
-            {
-                    write(1, "Invalid number\n", 15);
-            }
-            print_stack(&stackB);
+            if (!is_valid_number(argv[i], stackA)) // Check number & duplicate
+                return (write(1, "Error\n", 6), 1);
+
+            num = atoi(argv[i]); // Converti l int
+            push(&stackA, num); // Zido f stackA
+            write(1, "stackB siftna lih Data\n", 24);
+            print_stack(&stackA);
             i++;
         }
     }
     else
     {
-        write(1, "Kol m3ahom ou 7di mnhom\n", 25);
-        write(1, "T3am kayn ou lghdar kayn\n", 26);
+        write(1, "Kol m3ahom ou 7di m3ahom\n", 26);
+        write(1, "T3am kayn ou lghdar kayn\n", 25);
     }
-    return(0);
+    return (0);
 }
