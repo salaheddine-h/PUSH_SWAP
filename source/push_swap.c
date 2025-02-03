@@ -6,12 +6,11 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:02:45 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/02 16:58:24 by salhali          ###   ########.fr       */
+/*   Updated: 2025/02/02 21:21:30 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int is_valid_number(char *str, t_node *stack)
 {
@@ -41,7 +40,7 @@ int is_valid_number(char *str, t_node *stack)
     }
     return(1);
 }
-t_node *new_node(long data) 
+t_node  *new_node(long data) 
 {
     t_node *node = malloc(sizeof(t_node));
     if (!node)
