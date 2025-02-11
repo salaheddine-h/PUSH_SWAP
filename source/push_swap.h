@@ -6,15 +6,15 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:27:52 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/10 21:27:35 by salhali          ###   ########.fr       */
+/*   Updated: 2025/02/11 19:12:09 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# define INT_MIN    (-INT_MAX - 1)
-# define INT_MAX    2147483647
+// # define INT_MIN    (-INT_MAX - 1)
+// # define INT_MAX    2147483647
 
 #include "../libft/libft.h"
 #include <stdio.h>
@@ -30,6 +30,7 @@ typedef struct s_node
 } t_node;
 
 int	ft_isdigit(int arg);
+void    check_dup(t_node **stack, long num);
 int is_valid_number(char *str,t_node *stack); // Check if string is a valid number
 int ft_isdigit(int arg); //Funciton check is digite
 void print_stack(t_node **stack); //function Print_stack nchofo wach Data wsslat

@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:50:06 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/10 20:52:20 by salhali          ###   ########.fr       */
+/*   Updated: 2025/02/11 19:15:19 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_node *get_last_node(t_node **stack)
 {
     t_node *tmp;
 
-    if (!stack)
+    if (!stack | !*stack)
         return NULL;
     tmp = *stack;
     while (tmp->next)
@@ -36,31 +36,62 @@ t_node *get_last_node(t_node **stack)
     return(tmp);
 }
 // Push function to add element to the stack
+// void push(t_node **stack, long data)
+// {
+//     t_node *node;
+//     // t_node *tmp;
+//     // t_node *tmp;
+
+//     node = new_node(data); 
+//     // tmp = get_last_node(stack);
+//     if (!node)
+//         return;
+//     node->stack =   
+// }
+
 void push(t_node **stack, long data)
 {
-    t_node *node;
-    // t_node *tmp;
+    t_node *node = new_node(data);
+    if (!node)  // ✅ Stop if memory allocation fails
+        return;
 
-    node = new_node(data); 
-    // tmp = get_last_node(stack);
-    if (!node)
-    node->next = *stack;
-    *stack = node;
+    node->next = *stack;  // ✅ Insert the new node at the beginning
+    *stack = node;        // ✅ Update the stack pointer
 }
+
+
+// void push(t_node **stack, long data)
+// {
+//     t_node *node;
+
+//     node = new_node(data);
+//     if (!node)
+//         return;  // Stop execution if memory allocation fails
+
+//     node->next = *stack;  // Correctly link new node to the stack
+//     *stack = node;        // Update the stack pointer
+// }
+
 
 void print_stack(t_node **stack)
 {
     t_node *tmp;
 
-    if(!stack)
-        return ;
-    tmp = *stack;
-    while (tmp)
+    if (!stack || !*stack)  // ✅ Check if stack exists
     {
-        printf("-- %ld -- \n",tmp->data);
+        printf("Stack is empty or NULL\n");
+        return;
+    }
+
+    tmp = *stack;
+    while (tmp)  // ✅ Loop while `tmp` is not NULL
+    {
+        printf("-- %ld -- \n", tmp->data); // ✅ Safe to access `data`
         tmp = tmp->next;
     }
 }
+
+
 
 int	ft_isdigit(int arg)
 {
