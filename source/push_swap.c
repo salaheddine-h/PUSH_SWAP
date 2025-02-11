@@ -6,89 +6,83 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:02:45 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/02 21:21:30 by salhali          ###   ########.fr       */
+/*   Updated: 2025/02/10 21:49:09 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int is_valid_number(char *str, t_node *stack)
+// int is_valid_number(char *str)
+// {
+//     int i;
+//     long num;
+
+//     i = 0;
+//     if (!str || str[0] == '\0')
+//         return (0);
+//     if (str[i] == '-' || str[i] == '+')
+//         i++;
+//     num = atol(str);
+//     if(num < INT_MIN || num > INT_MAX) //check is number kbiir mn range (int)
+//         return(0);
+//     while (str[i])
+//     {
+//         if (!ft_isdigit(str[i]))
+//             return (0);
+//         i++;
+//     }
+//     // Check duplicate
+//     while (str[i])
+//     {
+//         if (str[i]) // L9ina duplicate
+//             return (0);
+//     }
+//     return(1);
+// }
+// int is_valid_number(char *str) {
+//     int i = 0;
+//     if (str[i] == '-' || str[i] == '+')  // Allow negative & positive signs
+//         i++;
+//     while (str[i]) {
+//         if (!isdigit(str[i]))  // Check wach ghir numbers
+//             return (0);
+//         i++;
+//     }
+//     return (1);
+// }
+
+
+int is_valid_number(char *str, t_node *stackA)
 {
     int i;
     long num;
+    t_node *temp;
 
     i = 0;
     if (!str || str[0] == '\0')
         return (0);
     if (str[i] == '-' || str[i] == '+')
         i++;
+    num = atol(str);
+    if (num < INT_MIN || num > INT_MAX) // Check if number is out of range (int)
+        return (0);
     while (str[i])
     {
         if (!ft_isdigit(str[i]))
             return (0);
         i++;
     }
-    num = atol(str);
-    if(num < INT_MIN || num > INT_MAX) //check is number kbiir mn range (int)
-        return(0);
-    //Check duplicate
-    while (stack)
+    // ✅ Check Duplicate in stackA
+    temp = stackA;
+    while (temp)
     {
-        if (stack->data == num) // L9ina duplicate
+        if (temp->data== (int)num) // L9ina deja kayn f stackA
             return (0);
-        stack = stack->next;
+        temp = temp->next;
     }
-    return(1);
-}
-t_node  *new_node(long data) 
-{
-    t_node *node = malloc(sizeof(t_node));
-    if (!node)
-        return NULL;
-    node->data = data;
-    node->next = NULL;
-    return node;
+    return (1);
 }
 
-t_node *get_last_node(t_node **stack)
-{
-    t_node *tmp;
-
-    if (!stack)
-        return NULL;
-    tmp = *stack;
-    while (tmp->next)
-    {
-        tmp = tmp->next;
-    }
-    return(tmp);
-}
-// Push function to add element to the stack
-void push(t_node **stack, long data)
-{
-    t_node *node;
-    // t_node *tmp;
-
-    node = new_node(data); 
-    // tmp = get_last_node(stack);
-    if (!node)
-    node->next = *stack;
-    *stack = node;
-}
-
-void print_stack(t_node **stack)
-{
-    t_node *tmp;
-
-    if(!stack)
-        return ;
-    tmp = *stack;
-    while (tmp)
-    {
-        printf("-- %ld -- \n",tmp->data);
-        tmp = tmp->next;
-    }
-}
 int main(int argc, char **argv)
 {
     t_node *stackA;
@@ -101,10 +95,12 @@ int main(int argc, char **argv)
     {
         while (i < argc) // Bach ndiro loop li ghatraverse argv[i] li kaynin
         {
-            if (!is_valid_number(argv[i], stackA)) // Check number & duplicate
-                return (write(1, "Error\n", 6), 1);
-
             num = atoi(argv[i]); // Converti l int
+            if(!is_valid_number(argv[i], stackA))// Check number & duplicate
+            {
+                write(1, "Error You Have Duplicate Number, 7salti \n", 42);
+                return (1);
+            }
             push(&stackA, num); // Zido f stackA
             write(1, "stackB siftna lih Data\n", 24);
             print_stack(&stackA);
