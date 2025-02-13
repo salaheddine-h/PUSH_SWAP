@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   op_swap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 17:54:10 by salah             #+#    #+#             */
-/*   Updated: 2025/02/12 18:48:00 by salah            ###   ########.fr       */
+/*   Created: 2025/02/13 15:47:18 by salah             #+#    #+#             */
+/*   Updated: 2025/02/13 15:48:05 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// sa (swap a): Swap the first 2 elements at the top of stack a.
+// Do nothing if there is only one or no elements.
+
+// Ex : 👉 Katbdl blasa dyal 2 l’awal f stack A. Ila kayn ghir wahed ola khawi, ma kaytbdl walo.
 
 void sa(t_node **stackA)
 {
@@ -28,6 +33,11 @@ void sa(t_node **stackA)
     *stackA = second;           // StackA now starts from Node 2
 }
 
+// sb (swap b): Swap the first 2 elements at the top of stack b.
+// Do nothing if there is only one or no elements
+
+//Ex : 👉 Nafschi haja b7al sa, walakin f stack B.
+
 void sb(t_node **stackB)
 {
     t_node *first;
@@ -43,6 +53,11 @@ void sb(t_node **stackB)
     second->next = first;       // Node 2 now points to Node 1
     *stackB = second;           // StackB now starts from Node 2
 }
+
+// ss : sa and sb at the same time.
+
+//Ex : 👉 Katdir sa o sb f nafs waqt.
+
 void ss(t_node **stackA, t_node **stackB)
 {
     sa(stackA); // Swap Stack A

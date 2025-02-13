@@ -6,7 +6,7 @@
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:02:45 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/13 12:48:52 by salah            ###   ########.fr       */
+/*   Updated: 2025/02/13 15:43:19 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int is_valid_number(char *str, t_node *stack)
 {
     int i;
     long num;
-    t_node *temp; //stackA dyali
+    // t_node *temp; //stackA dyali
 
     i = 0;
     if (!str || str[0] == '\0')
@@ -70,14 +70,12 @@ int main(int argc, char **argv)
         i = 1;
         while (i < argc)  //Loop through arguments
         {
-            num = atoi(argv[i]);
-            if (!is_valid_number(argv[i], stackA))  //Validate input number
+            num = atol(argv[i]);
+            if (!is_valid_number(argv[i], stackA))  //Ba9i 3ndi mochkiL hna dyal atol
                 return (write(2, "Error\n", 7),1);
             check_dup(&stackA, num);
             push(&stackA, num);
-            // sa(&stackA);
-            // sb(&stackA);
-            // ss(&stackA, &stackB);
+
             i++;
         }
         print_stack(&stackA);
@@ -85,7 +83,7 @@ int main(int argc, char **argv)
     else
     {
         write(2, "Error\n", 7);  //Proper error message
-        return (1);
+        exit(EXIT_FAILURE);
     }
     return (0);
 }

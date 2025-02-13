@@ -6,7 +6,7 @@
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:50:06 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/12 18:28:19 by salah            ###   ########.fr       */
+/*   Updated: 2025/02/13 14:12:12 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,27 @@ t_node  *new_node(long data)
     node->next = NULL;
     return node;
 }
-t_node *get_last_node(t_node **stack)
-{
-    t_node *tmp;
+// t_node *get_last_node(t_node **stack)
+// {
+//     t_node *tmp;
 
-    if (!stack | !*stack)
-        return NULL;
-    tmp = *stack;
-    while (tmp->next)
-    {
-        tmp = tmp->next;
-    }
-    return(tmp);
-}
-void push(t_node **stack, long data)
+//     if (!stack | !*stack)
+//         return NULL;
+//     tmp = *stack;
+//     while (tmp->next)
+//     {
+//         tmp = tmp->next;
+//     }
+//     return(tmp);
+// }
+void push(t_node **list, long data)
 {
     t_node *node = new_node(data);
     if (!node)  //Stop if memory allocation fails
         return;
 
-    node->next = *stack;  //Insert the new node at the beginning
-    *stack = node;        //Update the stack pointer
+    node->next = *list;  //Insert the new node at the beginning
+    *list = node;        //Update the stack pointer
 }
 void print_stack(t_node **stack)
 {
