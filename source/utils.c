@@ -6,7 +6,7 @@
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:50:06 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/12 10:12:14 by salah            ###   ########.fr       */
+/*   Updated: 2025/02/12 18:28:19 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ t_node  *new_node(long data)
     node->next = NULL;
     return node;
 }
-
 t_node *get_last_node(t_node **stack)
 {
     t_node *tmp;
@@ -61,7 +60,6 @@ void print_stack(t_node **stack)
         tmp = tmp->next;
     }
 }
-
 int	ft_isdigit(int arg)
 {
 	if (arg >= '0' && arg <= '9')

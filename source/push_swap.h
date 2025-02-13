@@ -6,7 +6,7 @@
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 20:27:52 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/12 10:09:52 by salah            ###   ########.fr       */
+/*   Updated: 2025/02/12 18:48:30 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // # define INT_MIN    (-INT_MAX - 1)
 // # define INT_MAX    2147483647
 
-// #include "../libft/libft.h"
+#include "../libft/libft.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -30,11 +30,17 @@ typedef struct s_node
 } t_node;
 
 void    check_dup(t_node **stack, long num);
-int is_valid_number(char *str,t_node *stack); // Check if string is a valid number
+int is_valid_number(char *str, t_node *stack);
 int ft_isdigit(int arg); //Funciton check is digite
 void print_stack(t_node **stack); //function Print_stack nchofo wach Data wsslat
 void push(t_node **stack, long data); //Katzid node jdida f stack
 t_node *get_last_node(t_node **stack);
 t_node *new_node(long data); // Function to create a new node in the stack
+
+
+void sa(t_node **stackA);
+void sb(t_node **stackB);
+void ss(t_node **stackA, t_node **stackB);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:02:45 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/12 10:09:19 by salah            ###   ########.fr       */
+/*   Updated: 2025/02/13 12:48:52 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void    check_dup(t_node **stack, long num)
         if (tmp->data == num)
         {
             // print_stack(stack);
-            printf("DUPLICATED NUMBER");
+            printf("ERROR");
             exit(1);//Safe to access `data`
         }
         tmp = tmp->next;
@@ -44,7 +44,7 @@ int is_valid_number(char *str, t_node *stack)
         return (0);
     if (str[i] == '-' || str[i] == '+')
         i++;
-    num = atol(str);
+    num = atoi((char *)str);
     if (num < INT_MIN || num > INT_MAX) // Check if number is out of range (int)
         return (0);
     while (str[i])
@@ -58,28 +58,33 @@ int is_valid_number(char *str, t_node *stack)
 
 int main(int argc, char **argv)
 {
-    t_node *stackA;
+    t_node  *stackA;
+    t_node  *stackB;
     int num;
     int i;
 
-    stackA= NULL;
+    stackA = NULL;
+    stackB = NULL;
     if (argc > 1)
     {
         i = 1;
         while (i < argc)  //Loop through arguments
         {
-            num = atol(argv[i]);
+            num = atoi(argv[i]);
             if (!is_valid_number(argv[i], stackA))  //Validate input number
-                return (write(2, "Error\n", 6),1);
+                return (write(2, "Error\n", 7),1);
             check_dup(&stackA, num);
-            push(&stackA, num);  //Push number to stack
+            push(&stackA, num);
+            // sa(&stackA);
+            // sb(&stackA);
+            // ss(&stackA, &stackB);
             i++;
         }
-        print_stack(&stackA);  //Debugging: print stack
+        print_stack(&stackA);
     }
     else
     {
-        write(2, "Error, Bad Argmu\n", 18);  //Proper error message
+        write(2, "Error\n", 7);  //Proper error message
         return (1);
     }
     return (0);
