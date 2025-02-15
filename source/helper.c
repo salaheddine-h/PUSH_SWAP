@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   helper.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 20:50:06 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/13 14:12:12 by salah            ###   ########.fr       */
+/*   Updated: 2025/02/15 14:35:33 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_node  *new_node(long data)
 //     }
 //     return(tmp);
 // }
-void push(t_node **list, long data)
+void push_s(t_node **list, long data)
 {
     t_node *node = new_node(data);
     if (!node)  //Stop if memory allocation fails
