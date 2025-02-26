@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
+/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 15:02:45 by salhali           #+#    #+#             */
-/*   Updated: 2025/02/15 15:14:32 by salah            ###   ########.fr       */
+/*   Updated: 2025/02/25 12:24:35 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
 {
     t_node  *stackA;
     t_node  *stackB;
-    long num;
+    long    num;
     int i;
 
     stackA = NULL;
@@ -26,22 +26,24 @@ int main(int argc, char **argv)
         i = 1;
         while (i < argc)  //Loop through arguments
         {
-            num = atol(argv[i]);
-            if (!is_valid_number(argv[i], stackA))  //Ba9i 3ndi mochkiL hna dyal atol
-                return (write(2, "Error\n", 7),1);
+            if (!is_valid_number(argv[i])) //Ba9i 3ndi mochkiL hna dyal atol
+                return (write(2, "Error\n", 7),1); // free stack
+            num = ft_atoi(argv[i]);
+            if (num > INT_MAX || num < INT_MIN)
+                return (write(2, "Error\n", 7),1); // free stack
             check_dup(&stackA, num);
             push_s(&stackA, num);
-            push_s(&stackB, num);
-
+            // push_s(&stackB, num);
             i++;
         }
         print_stack(&stackA);
-        printf("############\n");
-        print_stack(&stackB);
+        // print_stack(&stackA);
+        // printf("############\n");
+        // print_stack(&stackB);
     }
     else
     {
-        write(2, "Error\n", 7);  //Proper error message
+        write(2, "Error\n", 7);
         exit(EXIT_FAILURE);
     }
     return (0);

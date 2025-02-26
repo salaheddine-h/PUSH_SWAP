@@ -6,7 +6,7 @@
 #    By: salhali <salhali@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/30 15:01:58 by salhali           #+#    #+#              #
-#    Updated: 2025/02/02 16:55:01 by salhali          ###   ########.fr        #
+#    Updated: 2025/02/24 18:20:43 by salhali          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 CC = cc 
 
-SCRS = push_swap.c libft/libft.a 
+SCRS = helper.c  main.c  operations_push.c  operations_reverse.c  operations_rotate.c  operations_swap.c  parsing.c  push_swap.c libft/libft.a 
 
 OBJ = $(SCRS:.c=.o)
 
