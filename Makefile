@@ -1,39 +1,36 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: salhali <salhali@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/01/30 15:01:58 by salhali           #+#    #+#              #
-#    Updated: 2025/02/24 18:20:43 by salhali          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+# Define compiler
+CC = cc
 
+# Define CFLAGS (compiler flags)
+CFLAGS = -Wall -Wextra -Werror -I. -Ilibft   #-g -fsanitize=address
+
+# Source code files
+SRCs =  push_swap.c utils.c operations/operations_reverse_rotate.c operations/operations_push.c operations/operations_rotate.c operations/operations_swap.c check_arguments.c initialize_stack.c sort/big_sort_utils.c sort/optimized_big_sort.c sort/sort_stack.c
+Libft = libft/libft.a
+
+# Executable name
 NAME = push_swap
 
-RM = rm -rf 
+# Main target (to build the executable)
+all: $(NAME)
 
-CFLAGS = -Wall -Wextra -Werror 
+# How to build the executable
+$(NAME): $(SRCs) $(Libft)
+	$(CC) $(CFLAGS) $(SRCs) $(Libft) -o $(NAME)
 
-CC = cc 
+$(Libft):
+	make -s -C libft
+	make bonus -s -C libft
 
-SCRS = helper.c  main.c  operations_push.c  operations_reverse.c  operations_rotate.c  operations_swap.c  parsing.c  push_swap.c libft/libft.a 
-
-OBJ = $(SCRS:.c=.o)
-
-all : $(NAME)
-
-$(NAME) :
-		make all -C libft
-		$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-		
-clean :
+# Target to clean up object files
+clean:
+	rm -f $(NAME)
 	make clean -C libft
-	$(RM) $(NAME)
 
-fclean : clean 
+# Target to clean up object files & the executable
+fclean: clean
+	rm -f $(NAME)
 	make fclean -C libft
-	$(RM) $(NAME)
 
-re : fclean all 
+# Rebuild everything (clean first, then build)
+re: fclean all
