@@ -3,54 +3,76 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouboukou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 19:16:17 by ouboukou          #+#    #+#             */
-/*   Updated: 2023/12/21 10:59:32 by ouboukou         ###   ########.fr       */
+/*   Created: 2024/11/05 20:16:30 by salhali           #+#    #+#             */
+/*   Updated: 2024/11/15 13:22:47 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-static size_t	digits_len(int n)
+static char	convert(int n)
 {
-	size_t	i;
-
-	i = 0;
-	if (n < 0)
-		i = 1;
-	while (n)
-	{
-		n = n / 10;
-		i++;
-	}
-	return (i);
+	return (n % 10 + '0');
 }
 
-char	*ft_itoa(int n)
+static int	count(int n)
 {
-	char		*digits_str;
-	size_t		len;
-	long int	nb;
+	int	count;
 
-	nb = n;
-	len = digits_len(n);
-	if (n < 0)
-		nb = -nb;
+	count = 0;
 	if (n == 0)
+		return (1);
+	while (n)
 	{
-		digits_str = ft_strdup("0");
-		return (digits_str);
+		count++;
+		n = n / 10;
 	}
-	digits_str = malloc((len + 1) * sizeof(char));
-	if (digits_str == NULL)
+	return (count);
+}
+
+static char	*re(int nbr, char *str, size_t count_len, size_t sign)
+{
+	str = (char *)malloc(count_len + sign + 1);
+	if (!str)
 		return (NULL);
-	digits_str[len] = '\0';
-	while (len--)
+	str[count_len + sign] = '\0';
+	while (nbr > 0)
 	{
-		digits_str[len] = nb % 10 + '0';
-		nb = nb / 10;
+		str[count_len + sign - 1] = convert(nbr);
+		nbr = nbr / 10;
+		count_len--;
 	}
-	if (n < 0)
-		digits_str[0] = '-';
-	return (digits_str);
+	if (sign > 0)
+		str[0] = '-';
+	return (str);
+}
+
+char	*ft_itoa(int nbr)
+{
+	char	*str;
+	size_t	sign;
+	size_t	count_len;
+
+	sign = 0;
+	str = NULL;
+	if (nbr == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (nbr < 0)
+	{
+		nbr = -nbr;
+		sign++;
+	}
+	count_len = count(nbr);
+	while (nbr == 0)
+	{
+		str = malloc(2);
+		if (!str)
+			return (NULL);
+		str[0] = '0';
+		str[1] = '\0';
+		return (str);
+	}
+	return (re(nbr, str, count_len, sign));
 }

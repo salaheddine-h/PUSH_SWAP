@@ -3,86 +3,96 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouboukou <ouboukou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 11:38:57 by ouboukou          #+#    #+#             */
-/*   Updated: 2024/06/29 17:10:39 by ouboukou         ###   ########.fr       */
+/*   Created: 2024/11/05 20:13:11 by salhali           #+#    #+#             */
+/*   Updated: 2024/11/16 14:25:58 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	count_words(const char *s, char c)
+static int	is_sep(char a, char c)
+{
+	return (a == c);
+}
+
+static size_t	word_count(const char *str, char c)
 {
 	size_t	count;
+	size_t	i;
 
-	if (s == NULL)
-		return (0);
 	count = 0;
-	while (*s)
+	i = 0;
+	while (str[i])
 	{
-		while (*s && *s == c)
-			s++;
-		if (*s)
+		if (!is_sep(str[i], c) && (is_sep(str[i + 1], c) || str[i + 1] == '\0'))
 			count++;
-		while (*s && *s != c)
-			s++;
+		i++;
 	}
 	return (count);
 }
 
-static void	ft_free(char **str)
+static char	*word_alloc(const char *str, char c)
 {
+	char	*word;
 	size_t	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && !is_sep(str[i], c))
+		i++;
+	word = malloc((i + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
+	i = 0;
+	while (str[i] && !is_sep(str[i], c))
 	{
-		free(str[i]);
+		word[i] = ((char *)str)[i];
 		i++;
 	}
-	free(str);
+	word[i] = '\0';
+	return (word);
 }
 
-static char	**one_more_line(char const*s, char c, char **str, size_t count)
+static void	*free_all(char **sp)
 {
-	size_t	start;
-	size_t	end;
-	size_t	i;
+	int	i;
 
-	start = 0;
 	i = 0;
-	while (i < count)
+	while (sp[i] != NULL)
 	{
-		while (s[start] == c)
-			start++;
-		end = start;
-		while (s[end] != c && s[end])
-			end++;
-		str[i] = ft_substr(s, start, end - start);
-		if (str[i] == NULL)
-		{
-			ft_free(str);
-			return (0);
-		}
-		start = end;
+		free(sp[i]);
 		i++;
 	}
-	str[i] = 0;
-	return (str);
+	free(sp);
+	return (NULL);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**new_str;
-	size_t	count;
+	char	**sp;
+	size_t	i;
 
-	count = count_words(s, c);
-	new_str = malloc((count + 1) * sizeof(char *));
-	if (new_str == NULL || s == NULL)
+	if (!s)
 		return (NULL);
-	one_more_line(s, c, new_str, count);
-	if (new_str == NULL)
+	sp = malloc((word_count(s, c) + 1) * sizeof(char *));
+	if (!sp)
 		return (NULL);
-	return (new_str);
+	i = 0;
+	while (*s != '\0')
+	{
+		while (*s != '\0' && is_sep(*s, c))
+			s++;
+		if (*s && !is_sep(*s, c))
+		{
+			sp[i] = word_alloc(s, c);
+			if (!sp[i])
+				return (free_all(sp));
+			i++;
+			while (*s != '\0' && !is_sep(*s, c))
+				s++;
+		}
+	}
+	sp[i] = NULL;
+	return (sp);
 }

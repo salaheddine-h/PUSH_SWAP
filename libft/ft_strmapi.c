@@ -3,32 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ouboukou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/08 15:29:42 by ouboukou          #+#    #+#             */
-/*   Updated: 2023/12/08 18:12:30 by ouboukou         ###   ########.fr       */
+/*   Created: 2024/11/05 20:12:06 by salhali           #+#    #+#             */
+/*   Updated: 2024/11/16 19:46:51 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	len;
-	char	*rslt;
+	char	*resulting;
+	size_t	s_len;
 	size_t	i;
 
-	if (s == NULL || f == NULL)
+	if (!s || !f)
 		return (NULL);
-	len = ft_strlen(s);
-	rslt = malloc((len + 1) * sizeof(char));
-	if (rslt == NULL)
+	s_len = ft_strlen(s);
+	resulting = (char *)malloc(sizeof(char) * (s_len + 1));
+	if (!resulting)
 		return (NULL);
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
-		rslt[i] = f(i, s[i]);
+		resulting[i] = f(i, s[i]);
 		i++;
 	}
-	rslt[len] = '\0';
-	return (rslt);
+	resulting[i] = '\0';
+	return (resulting);
 }
+
+/*int	main(void)
+{
+	char	str[] = "sal";
+
+	printf("%s\n", ft_strmapi(str, check));
+}
+*/

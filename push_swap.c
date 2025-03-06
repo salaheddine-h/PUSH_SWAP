@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	if (argc >= 2)
 	{
-		if (check_arguments(argv) == 0)
+		if (check_arguments(argv) == 0)// if return 1 donc 
 		{
 			initialize_stack(argv, &stack_a);
 			if (check_duplicates(stack_a) == 1)
