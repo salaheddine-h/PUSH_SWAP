@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:16:53 by salhali           #+#    #+#             */
-/*   Updated: 2024/11/04 17:41:55 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/08 17:13:52 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_isdigit(int arg)
 {
 	if (arg >= '0' && arg <= '9')
-		return (1);
-	else
 		return (0);
+	else
+		return (1);
 }

@@ -1,6 +1,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "libft.h"
+# include "libft/libft.h"
 
 // Check Parsing
 int		check_arguments(char **argv);

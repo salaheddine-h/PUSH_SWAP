@@ -4,11 +4,11 @@ int	contains_only_spaces(char *str)
 {
 	while (*str)
 	{
-		if (ft_isspace(*str) == 1)
-			return (0);
+		if (ft_isspace(*str) == 0)
+			return (0);// kayn chi haja mkhtalfa 3la spaces
 		str++;
 	}
-	return (1);
+	return (1);//return 1 ila kan kolchi space
 }
 
 int	validate_number(const char *str)
@@ -90,5 +90,6 @@ int	check_arguments(char **argv)
 		}
 		i++;
 	}
-	return (0);
+	return (0); //function radi tkon == 0 ilaa kan kolchi valid
 }
+
