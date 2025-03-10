@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:11 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/08 21:10:12 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/10 00:26:05 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	initialize_stack(char **argv, t_list **stack_a)
 	i = 1;
 	while (argv[i])
 	{
-		if (NULL == ft_strchr(argv[i], ' '))
+		// NULL == ft_strchr(argv[i], ' ')
+		if (ft_strchr(argv[i], ' ') == NULL)
 		{
 			new_node = ft_lstnew(ft_atoi(argv[i]));
 			if (NULL == new_node)

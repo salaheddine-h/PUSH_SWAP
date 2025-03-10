@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 21:09:56 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/08 21:09:58 by salhali          ###   ########.fr       */
+/*   Created: 2025/02/10 21:09:56 by salhali           #+#    #+#             */
+/*   Updated: 2025/03/09 21:53:45 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
+# ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
 
@@ -21,6 +21,11 @@ int		check_multiple_numbers(const char *arg);
 int		check_single_number(const char *arg);
 int		contains_only_spaces(char *str);
 
+// Initialize Stack
+void	initialize_stack(char **argv, t_list **stack_a);
+void	initialize_stack_1(char **argv, int index, t_list **stack_a);
+int		check_duplicates(t_list *stack);
+int		check_stack_order(t_list **stack);
 
 // Utils
 void	ft_error(char *str);
@@ -28,12 +33,6 @@ void	ft_free(char **str);
 void	free_stack(t_list **stack);
 void	print_stack(t_list **stack);
 void	free_stack_and_exit(t_list **stack, char *msg, int true);
-
-// Initialize Stack
-void	initialize_stack(char **argv, t_list **stack_a);
-void	initialize_stack_1(char **argv, int index, t_list **stack_a);
-int		check_duplicates(t_list *stack);
-int		check_stack_order(t_list **stack);
 
 // Stack Instruction
 int		swap(t_list **stack);
