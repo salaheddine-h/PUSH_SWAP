@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:05:36 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/08 21:11:11 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/11 00:27:52 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,9 @@ void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(int));
 
 // 4th - Recently Added
-long				ft_atol(const char *str);
+int	skip_spaces_and_check_sign(const char **s);
+long long	longlong_atoi(const char *s);
+long long	convert_to_longlong(const char *s, int sign);
 int					ft_isspace(int c);
 
 #endif

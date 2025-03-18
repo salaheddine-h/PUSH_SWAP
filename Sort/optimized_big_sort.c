@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:27 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/10 03:31:36 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/17 23:58:40 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,15 @@ void	big_sort(t_list **stack_a, t_list **stack_b)
 	stack_size = ft_lstsize(*stack_a);
 	tab = sorted_stack_in_tab(stack_a, stack_size);
 	if (stack_size <= 100)
-		range = 17;
+		range = 3;
 	else
 		range = 30;
 	push_elements_to_stack_b(stack_a, stack_b, tab, range);
 	push_back_to_stack_a(stack_a, stack_b);
 	free(tab);
 }
+
+
 
 void	push_elements_to_stack_b(t_list **stack_a, t_list **stack_b, int *tab,
 		int range)
@@ -64,8 +66,7 @@ void	push_elements_to_stack_b(t_list **stack_a, t_list **stack_b, int *tab,
 		else if (range + i < stack_size && (*stack_a)->value <= tab[range + i])
 		{
 			push_stack_b(stack_a, stack_b);
-			if (ft_lstsize(*stack_b) > 1
-				&& (*stack_b)->value <= (*stack_b)->next->value)
+			if (ft_lstsize(*stack_b) > 1 && (*stack_b)->value <= (*stack_b)->next->value)
 				swap_stack_b(stack_b);
 			i++;
 		}
@@ -117,6 +118,9 @@ int	reverse_sorted_percentage(t_list *stack)
 			count++;
 		temp = temp->next;
 	}
+	// printf("total : %d\n", total);
+	// printf("count : %d\n", count);
 	return ((count * 100) / total);
+	// return(52);
 }
 

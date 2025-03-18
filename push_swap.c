@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 21:09:29 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/10 03:32:00 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/17 23:46:50 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	small_sort(t_list **stack_a, t_list **stack_b)
 	size = ft_lstsize(*stack_a);
 	if (size <= 1)
 		return ;
-	else if (size == 2 && check_stack_order(stack_a) == 1)
+	else if (size == 2)
 		swap_stack_a(stack_a);
 	else if (size == 3)
 		sort_3_number(stack_a);
@@ -38,11 +38,11 @@ int	main(int argc, char **argv)
 	stack_b = NULL;
 	if (argc >= 2)
 	{
-		if (check_arguments(argv) == 0)// if return 1 donc free all stackA and stackB
+		if (check_arguments(argv) == 0)
 		{
 			initialize_stack(argv, &stack_a);
 			if (check_duplicates(stack_a) == 1)
-				free_stack_and_exit(&stack_a, "Error", 1);
+				free_stack_and_exit(&stack_a, "Error check_duplicates", 1);
 			if (check_stack_order(&stack_a) == 0)
 				free_stack_and_exit(&stack_a, "NULL", 0);
 			if (ft_lstsize(stack_a) <= 5)
@@ -55,11 +55,3 @@ int	main(int argc, char **argv)
 	}
 	return (0);
 }
-//      99      08      63    543
-// argv[0] argv[1] argv[2] argv[3]  
-// args = "99   01  21"   "9000"  "NULL";
-
-// "99   01  21"   "900"
-
-
-// stacka = "99" "01" "21" "900"

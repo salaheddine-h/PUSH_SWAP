@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:09:39 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/08 21:09:41 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/17 03:53:48 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_free(char **str)
 void	free_stack(t_list **stack)
 {
 	t_list	*head;
-
+	// printf("22spaaam\n");
 	if (NULL == stack || NULL == *stack)
 		return ;
 	head = *stack;
@@ -52,4 +52,20 @@ void	free_stack_and_exit(t_list **stack, char *msg, int true)
 	free_stack(stack);
 	if (true)
 		ft_error(msg);
+}
+void	print_stack(t_list **stack)
+{
+	t_list	*head;
+	
+	if(!stack || !*stack)
+		return;
+		
+	int i = 0;
+	head = *stack;
+	while(head != NULL)
+	{
+		printf("Elment pos %d \t Elment value: %d\n", i, head->value);
+		i++;
+		head = head->next;
+	}
 }

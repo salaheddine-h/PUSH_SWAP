@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:34 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/08 21:10:35 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/17 04:06:29 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*sorted_stack_in_tab(t_list **stack_a, int stack_size)
 
 	tab = malloc(sizeof(int) * stack_size);
 	if (!tab)
-		ft_error("Error");
+		ft_error("Error sorted_stack_in_tab");
 	head = *stack_a;
 	i = 0;
 	while (head)

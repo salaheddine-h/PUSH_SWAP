@@ -6,49 +6,59 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:11:53 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/08 21:11:55 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/11 00:27:22 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*space_and_sign(const char *str, int *sign)
+int	skip_spaces_and_check_sign(const char **s)
 {
-	while (*str && ft_isspace(*str) == 0)
-		str++;
-	if (*str == '-' || *str == '+')
+	int	sign;
+
+	sign = 1;
+	while (**s && ((**s >= 9 && **s <= 13) || **s == ' '))
+		(*s)++;
+	if (**s == '-' || **s == '+')
 	{
-		if (*str == '-')
-			*sign = -(*sign);
-		str++;
+		if (**s == '-')
+			sign = -1;
+		(*s)++;
 	}
-	return ((char *)str);
+	return (sign);
 }
 
-long	ft_atol(const char *str)
+long long	convert_to_longlong(const char *s, int sign)
 {
-	int			i;
-	int			sign;
-	long long	result;
-	char		*new_str;
+	long long	reslt;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	new_str = space_and_sign(str, &sign);
-	while (new_str[i] && ft_isdigit(new_str[i]) == 0)
+	reslt = 0;
+	while (*s && (*s >= '0' && *s <= '9'))
 	{
-		if (result > LONG_MAX / 10 || (result == LONG_MAX / 10 && new_str[i]
-				- '0' > LONG_MAX % 10))
+		if (reslt > (LLONG_MAX / 10))
 		{
 			if (sign == 1)
-				return (LONG_MAX);
+				return (LLONG_MAX);
 			else
-				return (LONG_MIN);
+				return (LLONG_MIN);
 		}
-		result = result * 10 + (new_str[i] - '0');
-		i++;
+		if (reslt == (LLONG_MAX / 10) && (*s - '0') > (LLONG_MAX % 10))
+		{
+			if (sign == 1)
+				return (LLONG_MAX);
+			else
+				return (LLONG_MIN);
+		}
+		reslt = reslt * 10 + (*s - '0');
+		s++;
 	}
-	return (result * sign);
+	return (sign * reslt);
 }
 
+long long	longlong_atoi(const char *s)
+{
+	int	sign;
+
+	sign = skip_spaces_and_check_sign(&s);
+	return (convert_to_longlong(s, sign));
+}
