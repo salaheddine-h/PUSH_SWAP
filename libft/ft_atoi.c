@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:41:26 by salhali           #+#    #+#             */
-/*   Updated: 2024/11/08 10:15:42 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 02:04:51 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ int	ft_atoi(const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		result = (result * 10) + (nptr[i] - '0');
+		if((result * 10) > INT_MAX || (result * 10) < INT_MAX)
+			result = (result * 10) + (nptr[i] - '0');
 		i++;
 	}
+	
 	return ((int)(signe * result));
 }

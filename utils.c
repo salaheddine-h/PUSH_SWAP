@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:09:39 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/17 03:53:48 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 01:27:52 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	ft_free(char **str)
 void	free_stack(t_list **stack)
 {
 	t_list	*head;
-	// printf("22spaaam\n");
 	if (NULL == stack || NULL == *stack)
 		return ;
 	head = *stack;

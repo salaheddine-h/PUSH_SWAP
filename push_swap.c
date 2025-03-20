@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 21:09:29 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/17 23:46:50 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 01:41:17 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	main(int argc, char **argv)
 	{
 		if (check_arguments(argv) == 0)
 		{
+			printf("spaam\n");
 			initialize_stack(argv, &stack_a);
 			if (check_duplicates(stack_a) == 1)
-				free_stack_and_exit(&stack_a, "Error check_duplicates", 1);
+				free_stack_and_exit(&stack_a, "Error", 1);
 			if (check_stack_order(&stack_a) == 0)
 				free_stack_and_exit(&stack_a, "NULL", 0);
 			if (ft_lstsize(stack_a) <= 5)

@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:34 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/17 04:06:29 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 00:01:41 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	*sorted_stack_in_tab(t_list **stack_a, int stack_size)
 
 	tab = malloc(sizeof(int) * stack_size);
 	if (!tab)
-		ft_error("Error sorted_stack_in_tab");
+		ft_error("Error");
 	head = *stack_a;
 	i = 0;
 	while (head)
@@ -77,3 +77,31 @@ int	*bubble_sort(int *tab, int size)
 	return (tab);
 }
 
+
+// tab[i] 21
+// tab[i] 23
+// tab[i] 34
+// tab[i] 41
+// tab[i] 42
+// tab[i] 45
+// tab[i] 52
+// tab[i] 55
+// tab[i] 61
+// tab[i] 71
+// tab[i] 87
+// tab[i] 104
+
+
+
+
+// stack_a 87
+// stack_a 23
+// stack_a 41
+// stack_a 21
+// stack_a 55
+// stack_a 42
+// stack_a 34
+// stack_a 61
+// stack_a 52
+// stack_a 104
+// stack_a 45

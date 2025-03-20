@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:27 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/17 23:58:40 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 01:48:10 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	big_sort(t_list **stack_a, t_list **stack_b)
 	stack_size = ft_lstsize(*stack_a);
 	tab = sorted_stack_in_tab(stack_a, stack_size);
 	if (stack_size <= 100)
-		range = 3;
+		range = 11;
 	else
 		range = 30;
 	push_elements_to_stack_b(stack_a, stack_b, tab, range);
@@ -118,9 +118,5 @@ int	reverse_sorted_percentage(t_list *stack)
 			count++;
 		temp = temp->next;
 	}
-	// printf("total : %d\n", total);
-	// printf("count : %d\n", count);
 	return ((count * 100) / total);
-	// return(52);
 }
-
