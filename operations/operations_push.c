@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   operations_push.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:57 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/18 03:18:11 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 08:28:13 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	push(t_list **dest_stack, t_list **src_stack)
 
 	if (ft_lstsize(*src_stack) == 0)
 		return (0);
+	//check_ if src_stack == NULL nhrob mn segmentation fault
 	dest_head = *dest_stack;
 	src_head = *src_stack;
 	tmp = src_head;

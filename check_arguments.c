@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arguments.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:17 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/20 02:00:34 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 09:13:49 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	contains_only_spaces(char *str)
 {
+	if(*str == '\0')
+		return(0);
 	while (*str)
 	{
 		if (ft_isspace(*str) == 0)
@@ -38,7 +40,7 @@ int	validate_number(const char *str)
 		i++;
 	while (str[i])
 	{
-		if (ft_isdigit(str[i]) == 1)
+		if (ft_isdigit(str[i]) == 0)
 			return (1);
 		i++;
 	}

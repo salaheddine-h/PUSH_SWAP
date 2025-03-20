@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:41:26 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/20 02:04:51 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 09:20:04 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,16 @@ int	ft_atoi(const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		if((result * 10) > INT_MAX || (result * 10) < INT_MAX)
-			result = (result * 10) + (nptr[i] - '0');
-		i++;
+			if (signe == 1 && result > (INT_MAX / 10))
+					return (INT_MAX);
+			if (signe == -1 && result > -(long)(INT_MIN / 10))
+					return (INT_MIN);
+			result = result * 10 + (nptr[i] - '0');
+			if (signe == 1 && result > INT_MAX)
+					return (INT_MAX);
+			if (signe == -1 && result > -(long)INT_MIN)
+					return (INT_MIN);
+			i++;
 	}
-	
 	return ((int)(signe * result));
 }

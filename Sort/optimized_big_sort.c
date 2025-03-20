@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   optimized_big_sort.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:27 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/20 01:48:10 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 08:46:33 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	big_sort(t_list **stack_a, t_list **stack_b)
 	stack_size = ft_lstsize(*stack_a);
 	tab = sorted_stack_in_tab(stack_a, stack_size);
 	if (stack_size <= 100)
-		range = 11;
+		range = 17;
 	else
 		range = 30;
 	push_elements_to_stack_b(stack_a, stack_b, tab, range);
@@ -77,6 +77,7 @@ void	push_elements_to_stack_b(t_list **stack_a, t_list **stack_b, int *tab,
 
 void	push_back_to_stack_a(t_list **stack_a, t_list **stack_b)
 {
+	int	stack_size;
 	int	max_elmnt_pos;
 
 	while (*stack_b)
@@ -100,6 +101,13 @@ void	push_back_to_stack_a(t_list **stack_a, t_list **stack_b)
 			}
 		}
 		push_stack_a(stack_a, stack_b);
+	}
+		// 🔴 Correction : Dir reverse `stack_a` bach ywali trié mn sghir l kbiiiir.
+	stack_size = ft_lstsize(*stack_a);
+	while (stack_size > 0)
+	{
+			reverse_rotate_stack_a(stack_a);
+			stack_size--;
 	}
 }
 
