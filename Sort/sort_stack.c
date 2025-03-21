@@ -6,7 +6,7 @@
 /*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:23 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/17 04:36:41 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/20 21:27:13 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ void	move_element_to_top(t_list **stack_a, int postion)
 			reverse_rotate_stack_a(stack_a);
 	}
 }
-
-
-
-
 
 int	min_element_postion(t_list **stack_a)
 {
@@ -58,10 +54,6 @@ int	min_element_postion(t_list **stack_a)
 	return (min_postion);
 }
 
-
-
-
-
 void	sort_5_number(t_list **stack_a, t_list **stack_b)
 {
 	int	position;
@@ -76,13 +68,6 @@ void	sort_5_number(t_list **stack_a, t_list **stack_b)
 	push_stack_a(stack_a, stack_b);
 	push_stack_a(stack_a, stack_b);
 }
-
-
-
-
-
-
-
 
 
 void	sort_4_number(t_list **stack_a, t_list **stack_b)

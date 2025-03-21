@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
+/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:09:39 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/20 09:02:05 by salah            ###   ########.fr       */
+/*   Updated: 2025/03/20 23:43:53 by salhali          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,19 @@ void	free_stack_and_exit(t_list **stack, char *msg, int true)
 	if (true)
 		ft_error(msg);
 }
-// void	print_stack(t_list **stack)
-// {
-// 	t_list	*head;
+void	print_stack(t_list **stack)
+{
+	t_list	*head;
 
-// 	if(!stack || !*stack)
-// 		return;
+	if(!stack || !*stack)
+		return;
 
-// 	int i = 0;
-// 	head = *stack;
-// 	while(head != NULL)
-// 	{
-// 		printf("Elment pos %d \t Elment value: %d\n", i, head->value);
-// 		i++;
-// 		head = head->next;
-// 	}
-// }
+	int i = 0;
+	head = *stack;
+	while(head != NULL)
+	{
+		printf("Elment pos %d \t Elment value: %d\n", i, head->value);
+		i++;
+		head = head->next;
+	}
+}
