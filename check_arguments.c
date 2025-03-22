@@ -6,7 +6,7 @@
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:17 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/22 06:54:20 by salah            ###   ########.fr       */
+/*   Updated: 2025/03/22 07:22:51 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,29 +25,31 @@ int	contains_only_spaces(char *str)
 	return (1);//return 1 ila kan kolchi space
 }
 
-int	validate_number(const char *str)
+int validate_number(const char *str)
 {
-	int			i;
-	long long	num;
+    int i;
+    long long num;
 
-	if (str[0] == '\0')
-	{
-		ft_putendl_fd("Error", 2);
-		return (1);
-	}
-	i = 0;
-	if ((str[i] == '+' || str[i] == '-') && (str[i + 1]))
-		i++;
-	while (str[i])
-	{
-		if (ft_isdigit(str[i]) == 0)
-			return (1);
-		i++;
-	}
-	num = ft_atoi(str);
-	if (num < INT_MIN || num > INT_MAX)
-		return(1);
-	return (0);
+    if (str[0] == '\0')
+    {
+        ft_putendl_fd("Error", 2);
+        return (1);
+    }
+    i = 0;
+    if ((str[i] == '+' || str[i] == '-') && str[i + 1])
+        i++;
+    if (str[i] == '\0') // Reject lone + or -
+        return (1);
+    while (str[i])
+    {
+        if (ft_isdigit(str[i]) == 0)
+            return (1);
+        i++;
+    }
+    num = ft_atoi(str);
+    if (num < INT_MIN || num > INT_MAX)
+        return (1);
+    return (0);
 }
 
 int	check_single_number(const char *arg)
@@ -83,27 +85,27 @@ int	check_multiple_numbers(const char *arg)
 	return (0);
 }
 
-int	check_arguments(char **argv)
+int check_arguments(char **argv)
 {
-	int	i;
+    int i;
 
-	i = 1;
-	while (argv[i])
-	{
-		if (contains_only_spaces(argv[i]) == 1)
-			ft_error("Error");
-		if (ft_strchr(argv[i], ' ') == NULL)
-		{
-			if (check_single_number(argv[i]) == 1)
-				return (1);
-		}
-		else
-		{
-			if (check_multiple_numbers(argv[i]) == 1)
-				return (1);
-		}
-		i++;
-	}
-	return (0); //function radi tkon == 0 ilaa kan kolchi valid
+    i = 1;
+    while (argv[i])
+    {
+        if (argv[i][0] == '\0' || contains_only_spaces(argv[i]) == 1)
+            ft_error("Error");
+        if (ft_strchr(argv[i], ' ') == NULL)
+        {
+            if (check_single_number(argv[i]) == 1)
+                return (1);
+        }
+        else
+        {
+            if (check_multiple_numbers(argv[i]) == 1)
+                return (1);
+        }
+        i++;
+    }
+    return (0);
 }
 
