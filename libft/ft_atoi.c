@@ -6,13 +6,13 @@
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 17:41:26 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/22 05:32:26 by salah            ###   ########.fr       */
+/*   Updated: 2025/03/22 06:57:20 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
 	size_t	i;
 	int		signe;
@@ -31,19 +31,8 @@ int	ft_atoi(const char *nptr)
 	}
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-			if (signe == 1 && result > (INT_MAX / 10))
-				exit(1);
-			if (signe == -1 && result > -(long)(INT_MIN / 10))
-			{
-				///free**
-				exit(1);
-			}
 			result = result * 10 + (nptr[i] - '0');
-			if (signe == 1 && result > INT_MAX)
-					return (INT_MAX);
-			if (signe == -1 && result > -(long)INT_MIN)
-					return (INT_MIN);
 			i++;
 	}
-	return ((int)(signe * result));
+	return (signe * result);
 }

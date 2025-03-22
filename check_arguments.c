@@ -6,7 +6,7 @@
 /*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 21:10:17 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/20 09:13:49 by salah            ###   ########.fr       */
+/*   Updated: 2025/03/22 06:54:20 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	validate_number(const char *str)
 		i++;
 	}
 	num = ft_atoi(str);
-	if (num > 2147483647 || num < -2147483648)
-		return (1);
+	if (num < INT_MIN || num > INT_MAX)
+		return(1);
 	return (0);
 }
 

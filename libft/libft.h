@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: salhali <salhali@student.42.fr>            +#+  +:+       +#+        */
+/*   By: salah <salah@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 19:05:36 by salhali           #+#    #+#             */
-/*   Updated: 2025/03/19 21:41:25 by salhali          ###   ########.fr       */
+/*   Updated: 2025/03/22 06:56:32 by salah            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strchr(const char *s, int c);
 void	*ft_calloc(size_t count, size_t size);
 void	*ft_memset(void *s, int c, size_t n);
-int		ft_atoi(const char *nptr);
+long	ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strdup(const char *s);
 void	*ft_memchr(const void *s, int c, size_t n);
@@ -72,10 +72,7 @@ t_list				*ft_lstlast(t_list *lst);
 void				ft_lstadd_back(t_list **lst, t_list *new);
 void				ft_lstdelone(t_list *lst, void (*del)(int));
 
-// 4th - Recently Added
-int	skip_spaces_and_check_sign(const char **s);
-long long	longlong_atoi(const char *s);
-long long	convert_to_longlong(const char *s, int sign);
+
 int					ft_isspace(int c);
 
 #endif
